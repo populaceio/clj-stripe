@@ -1,4 +1,4 @@
-(defproject abengoa/clj-stripe "1.0.4"
+(defproject org.clojars.populaceio "1.0.5-SNAPSHOT"
   :description "Clojure binding for Stripe"
   :dependencies [[org.clojure/clojure "1.5.0"]
 		 [org.clojure/data.json "0.1.3"]
