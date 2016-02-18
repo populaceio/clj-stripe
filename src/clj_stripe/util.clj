@@ -46,7 +46,11 @@
   "POSTs a to a url using the provided authentication token and parameters."
   [token url params]
   (try
-    (let [result (client/post url {:basic-auth [token] :query-params params :throw-exceptions false})]
+    (let [result (client/post url (merge {:basic-auth [token]
+                                          :query-params (dissoc params :stripe-account)
+                                          :throw-exceptions false}
+                                         (when-let [connected (get params :stripe-account)]
+                                           {:headers {"Stripe-Account" connected}})))]
       (json/read-json (:body result)))
     (catch java.lang.Exception e e)))
 
